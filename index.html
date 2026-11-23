@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Egresados — Invitación Interactiva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <!-- MINIJUEGO DE ACCESO: FERNET A GUSTO -->
+    <section class="card gate-section" id="gate" aria-labelledby="gate-title">
+      <header>
+        <span class="badge" id="gate-badge">PROMO · BARRA LIBRE</span>
+        <h1 class="title" id="gate-title">Prepará tu Fernet</h1>
+        <p class="subtitle">
+          Armalo como más te guste: hacé clic o mantené apretado. Cualquier mezcla te deja pasar.
+        </p>
+      </header>
+
+      <section class="glass-stage" aria-label="Medidor del vaso de fernet">
+        <figure class="glass-figure">
+          <div class="glass" role="img" aria-label="Vaso con hielo, fernet y cola">
+            <div class="ice-tray" id="ice-tray" aria-hidden="true"></div>
+            <div class="liquid-cola" id="liquid-cola" aria-hidden="true"></div>
+            <div class="liquid-fernet" id="liquid-fernet" aria-hidden="true"></div>
+          </div>
+          <figcaption class="glass-caption">Tu vaso en vivo</figcaption>
+        </figure>
+
+        <ul class="meters">
+          <li>
+            <div class="meter-head">
+              <label for="meter-ice">Hielo</label>
+              <strong id="text-ice">0 cubos</strong>
+            </div>
+            <meter id="meter-ice" min="0" max="4" value="0"></meter>
+          </li>
+
+          <li>
+            <div class="meter-head">
+              <label for="meter-fernet">Fernet</label>
+              <strong id="text-fernet">0%</strong>
+            </div>
+            <meter id="meter-fernet" min="0" max="100" value="0"></meter>
+          </li>
+
+          <li>
+            <div class="meter-head">
+              <label for="meter-cola">Cola</label>
+              <strong id="text-cola">0%</strong>
+            </div>
+            <meter id="meter-cola" min="0" max="100" value="0"></meter>
+          </li>
+        </ul>
+      </section>
+
+      <output class="joke-output" id="drink-joke" for="meter-ice meter-fernet meter-cola">
+        Vaso vacío: tirá un hielo o empezá a servir.
+      </output>
+
+      <fieldset class="field">
+        <label for="drink-nickname">Bautizá tu fernet (opcional)</label>
+        <input
+          type="text"
+          id="drink-nickname"
+          class="input"
+          placeholder="Ej: El de la previa, Clásico de la promo..."
+        />
+      </fieldset>
+
+      <nav class="pour-nav" aria-label="Controles para armar el fernet">
+        <button type="button" class="btn btn-dark" id="btn-ice">+ Hielo</button>
+        <button type="button" class="btn btn-dark" id="btn-fernet">Fernet</button>
+        <button type="button" class="btn btn-dark" id="btn-cola">Cola</button>
+      </nav>
+
+      <button type="button" class="btn btn-accent" id="btn-enter" disabled>
+        Entrar con mi Fernet
+      </button>
+
+      <footer class="gate-actions">
+        <button type="button" class="btn-ghost" id="btn-clear">Vaciar vaso</button>
+        <button type="button" class="btn-ghost" id="btn-skip">Entrar directo</button>
+      </footer>
+    </section>
+
+    <!-- INVITACIÓN COMPLETA -->
+    <main class="invitation" id="invitation">
+      <header class="card hero-header">
+        <span class="badge" id="hero-badge">CENA &amp; BAILE DE EGRESADOS</span>
+        <h1 class="title" id="event-title">Fiesta de Egresados</h1>
+        <p class="school-name" id="school-name">Colegio San Martín — Promoción</p>
+        <p class="subtitle">
+          <time id="event-time" datetime="2026-12-12T21:30:00-03:00">
+            Sábado 12 de Diciembre · 21:30 hs
+          </time>
+        </p>
+
+        <p class="countdown-caption">Cuenta regresiva para la gran noche</p>
+        <ul class="countdown" role="timer" aria-live="polite" aria-label="Cuenta regresiva">
+          <li>
+            <strong id="cd-days">00</strong>
+            <span>Días</span>
+          </li>
+          <li>
+            <strong id="cd-hours">00</strong>
+            <span>Horas</span>
+          </li>
+          <li>
+            <strong id="cd-minutes">00</strong>
+            <span>Min</span>
+          </li>
+          <li>
+            <strong id="cd-seconds">00</strong>
+            <span>Seg</span>
+          </li>
+        </ul>
+      </header>
+
+      <!-- IDENTIDAD DE LA PROMO -->
+      <section class="card" aria-labelledby="promo-heading">
+        <header class="section-head">
+          <h2 class="section-title" id="promo-heading">Así es la Promo</h2>
+          <p class="subtitle" id="promo-quote">
+            ¡Años de cursada, viajes y risas cierran esta noche!
+          </p>
+        </header>
+
+        <ul class="promo-milestones" id="promo-milestones"></ul>
+
+        <aside class="drink-summary" aria-label="Resumen de tu fernet">
+          <code id="drink-summary-text">Tu vaso: sin servir</code>
+          <button type="button" class="btn btn-dark btn-mini" id="btn-share">
+            Compartir
+          </button>
+        </aside>
+
+        <div class="action-pair">
+          <button type="button" class="btn btn-dark" id="btn-replay">Cambiar trago</button>
+          <a class="btn btn-dark" href="#rsvp-heading">Confirmar lugar</a>
+        </div>
+      </section>
+
+      <!-- DATOS CLAVE -->
+      <section class="card" aria-labelledby="details-heading">
+        <header class="section-head">
+          <h2 class="section-title" id="details-heading">Datos Clave</h2>
+          <p class="subtitle">Todo lo que necesitás para caer al salón.</p>
+        </header>
+
+        <ul class="info-list">
+          <li>
+            <article class="info-card">
+              <span class="kicker">Lugar y Dress Code</span>
+              <p class="info-main" id="venue-name">Salón Imperial</p>
+              <address class="info-address" id="venue-address">Av. San Martín 1250</address>
+              <p class="info-note" id="dress-code">Dress code: Elegante Sport</p>
+              <a
+                class="btn btn-accent"
+                id="map-link"
+                href="https://maps.google.com/?q=-32.8895,-68.8458"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Abrir ubicación en Google Maps
+              </a>
+            </article>
+          </li>
+
+          <li>
+            <article class="info-card">
+              <span class="kicker">Valor de la Tarjeta</span>
+              <p class="info-main" id="ticket-price">$48.000 ARS por persona</p>
+              <p class="info-note">Incluye cena, barra, brindis y DJ de la promo.</p>
+
+              <aside class="alias-box" aria-label="Alias para transferencia">
+                <code id="alias-code">promo.egresados.mp</code>
+                <button type="button" class="btn btn-dark btn-mini" id="btn-copy-alias">
+                  Copiar
+                </button>
+              </aside>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+      <!-- CONFIRMACIÓN POR WHATSAPP -->
+      <section class="card" aria-labelledby="rsvp-heading">
+        <header class="section-head">
+          <h2 class="section-title" id="rsvp-heading">Confirmar Asistencia</h2>
+          <p class="subtitle">Mandá tu confirmación directa por WhatsApp a la comisión.</p>
+        </header>
+
+        <form id="rsvp-form">
+          <fieldset class="field">
+            <label for="rsvp-name">Nombre y apellido</label>
+            <input type="text" id="rsvp-name" class="input" placeholder="Ej: Lucía Gómez" required />
+          </fieldset>
+
+          <fieldset class="field">
+            <label for="rsvp-passes">Cantidad de pases</label>
+            <select id="rsvp-passes" class="input">
+              <option value="1 pase">1 pase</option>
+              <option value="2 pases" selected>2 pases</option>
+              <option value="3 pases">3 pases</option>
+              <option value="4 pases">4 pases</option>
+            </select>
+          </fieldset>
+
+          <fieldset class="field">
+            <label for="rsvp-diet">Restricción alimentaria</label>
+            <input type="text" id="rsvp-diet" class="input" placeholder="Ej: Celíaco, Vegetariano, Ninguna" />
+          </fieldset>
+
+          <button type="submit" class="btn btn-accent">Confirmar por WhatsApp</button>
+        </form>
+      </section>
+
+      <!-- MURO DE FOTOS -->
+      <section class="card" aria-labelledby="gallery-heading">
+        <header class="section-head">
+          <h2 class="section-title" id="gallery-heading">Muro de Fotos</h2>
+          <p class="subtitle">Subí tu foto y dejá tu mensaje para toda la promo.</p>
+        </header>
+
+        <form id="photo-form">
+          <fieldset class="field">
+            <label for="photo-author">Tu nombre (opcional)</label>
+            <input type="text" id="photo-author" class="input" placeholder="Ej: Mateo" />
+          </fieldset>
+
+          <fieldset class="field">
+            <label for="photo-file">Seleccionar foto</label>
+            <input type="file" id="photo-file" class="input" accept="image/*" />
+          </fieldset>
+
+          <figure class="preview-figure" id="preview-figure">
+            <img id="preview-img" src="" alt="Vista previa de la foto elegida" />
+            <figcaption>Vista previa lista para publicar</figcaption>
+          </figure>
+
+          <fieldset class="field">
+            <label for="photo-caption">Mensaje o comentario</label>
+            <input type="text" id="photo-caption" class="input" placeholder="¡Qué noche!" />
+          </fieldset>
+
+          <button type="submit" class="btn btn-accent">Publicar en el muro</button>
+        </form>
+
+        <ul class="photo-grid" id="photo-wall" aria-label="Fotos de la promo">
+          <li>
+            <article class="photo-card">
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=75"
+                  alt="Celebración de egresados"
+                />
+                <figcaption>
+                  <strong>Comisión Promo</strong>
+                  <span>¡Arrancando la noche más esperada!</span>
+                </figcaption>
+              </figure>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+      <footer class="site-footer">
+        <p id="footer-text">Invitación Web Interactiva · Egresados</p>
+      </footer>
+    </main>
+  </div>
+
+  <output class="toast" id="toast" role="status" aria-live="polite"></output>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
